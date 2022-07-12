@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::post('/', [MainController::class, 'post']);
+Route::post('roles', [RolesController::class, 'create']);
+Route::put('roles/{role}', [RolesController::class, 'update']);
+Route::get('delete/{id}', [RolesController::class, 'delete']);
 
-Route::put('/', [MainController::class, 'put']);
+Route::get('index', [RolesController::class, 'index']);
+
+Route::get('roles/{role}', [RolesController::class, 'show']);
+Route::get('roles/{role}/users', [RolesController::class, 'users']);
