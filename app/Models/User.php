@@ -51,4 +51,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function hasAnyRole($roles)
+    {
+        if(!is_array($roles))
+        {
+            $roles = [$roles];
+        }
+
+        foreach($roles as $role){
+            if (strtolower($role) === strtolower($this->role->name))
+            return true;
+        }
+
+        return false;
+    }
 }
