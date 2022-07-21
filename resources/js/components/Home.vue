@@ -1,46 +1,49 @@
 <template>
     <div>
         <h1>
-        {{ title }}
+            {{ title }}
         </h1>
-        <input type="text" v-model="title">
-        <ul>
-            <li v-for="user in users">{{ user }}</li>
-        </ul>
-        <input type="text" v-model="name">
-        <button type="button" @click="addUser">Add</button>
-        <div>
-            <h2>{{ user.name }}</h2>
-            <h2>{{ user.last_name }}</h2>
-        </div>
+        <card v-for="(user, index) in users" :user="user" text="some text..."
+        v-bind:key="index"/>
     </div>
 </template>
 
 <script>
+import User from "./users/User";
 export default {
     name: "Home",
+    components: { 
+        card: User,
+    },
     data(){
         return {
-            title: 'Crm Helpdesc',
-            users: ['Alex', 'Dima', 'Vasya'],
-            user: {
-                name: 'First Name',
-                last_name: 'Last Name',
-            },
+            title:'Crm Helpdesc',
+            users:[
+                {
+                    name: 'Roman',
+                    last_name: 'Davydov'
+                },
+                {
+                    name: 'Roman2',
+                    last_name: 'Davydov'
+                },
+                                {
+                    name: 'Roman3',
+                    last_name: 'Davydov'
+                },
+            ],
             name: null,
         }
-
     },
-    methods:{
+    methods: {
         addUser(){
             this.users.push(this.name);
             this.clearName();
-            
         },
         clearName(){
-            this.name = null;
+            this.name=null;
         },
-    }
+    },
 }
 </script>
 
