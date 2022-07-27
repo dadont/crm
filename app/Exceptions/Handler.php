@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
         }
 
         if($e instanceof AuthenticationException){
-            return response(false, 301);
+            return response(false, 401);
         }
         return parent::render($request, $e);
     }

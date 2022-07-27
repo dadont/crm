@@ -1,21 +1,37 @@
 <template>
     <div>
-        <h2>{{ user.name }} {{ user.last_name }}</h2>
+        <h2 :class=getClass(user.role)>{{ user.name }} {{ user.last_name }}</h2>
         <p>{{ text }}</p>
+        <template v-if="user.role === 'client'">
+            <small>{{ user.role }}</small>
+        </template>
+        <template v-else>
+            <p>{{ user.role }}</p>
+        </template>
     </div>
 </template>
 
 <script>
 export default {
     props: ['user', 'text'],
-    name: "User"
-    
+    name: "User",
+    methods:{
+        getClass(role)
+        {
+            return 'top-'+role;
+        }
+    }
 }
 </script>
 
 <style scoped>
-h2 {
-    color: red
+.top-admin {
+    color:green;
 }
-
+.top-client {
+    color:blue;
+}
+.top-manager {
+    color:rgb(173, 27, 154);
+}
 </style>
