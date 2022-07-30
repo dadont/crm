@@ -22,35 +22,14 @@ export default {
      data(){
         return {
             title:'Crm Helpdesc',
-            users:[
-                {
-                    name: 'Roman',
-                    last_name: 'Davydov',
-                    role: 'admin'
-                },
-                {
-                    name: 'Vova',
-                    last_name: 'Udav',
-                    role: 'manager'
-                },
-                {
-                    name: 'Semen',
-                    last_name: 'Petrov',
-                    role: 'client'
-                },
-                {
-                    name: 'Baba',
-                    last_name: 'Vanya',
-                    role: 'client'
-                },
-                {
-                    name: 'Ivan',
-                    last_name: 'Petrov',
-                    role: 'manager'
-                },
-            ],
+            users:[],
 
         }
+    },
+    async mounted(){
+        let result =  await axios.get('/users');
+        this.users = result.data;
+        
     },
 }
 </script>
